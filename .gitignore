@@ -1,0 +1,14 @@
+# Ignore the virtual environment
+.venv/
+venv/
+
+# Ignore python cache files
+__pycache__/
+*.pyc
+
+# Ignore local session reports (keep the repo clean)
+*.csv
+*.png
+
+# (Optional) If you want to keep one specific screenshot, 
+# you can force add it later, but this blocks the messy ones.
