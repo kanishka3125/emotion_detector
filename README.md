@@ -1,4 +1,4 @@
-emotion_detector <br>
+Emotion_Detector <br>
 🧠 Research-Grade AI Emotion Detector
 
 A real-time AI system that detects human emotions using Computer Vision and Deep Learning. Unlike standard detectors, this project features an **Automatic Calibration System** that learns the user's specific facial structure to ensure high accuracy.
