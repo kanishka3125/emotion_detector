@@ -351,12 +351,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const EMOTION_COLORS = {
         happy:    '#10b981',
-        surprise: '#6366f1',
-        neutral:  '#94a3b8',
-        sad:      '#3b82f6',
-        angry:    '#f43f5e',
-        fear:     '#f59e0b',
-        disgust:  '#8b5cf6',
+        surprise: '#f97316',
+        neutral:  '#a8a29e',
+        sad:      '#f59e0b',
+        angry:    '#ef4444',
+        fear:     '#fb923c',
+        disgust:  '#e11d48',
     };
 
     const emotionToY = (em) => {
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     pointRadius: 5,
                     pointHoverRadius: 6,
                     showLine: true,
-                    borderColor: 'rgba(99,102,241,0.3)',
+                    borderColor: 'rgba(249,115,22,0.3)',
                     borderWidth: 1.5,
                     tension: 0,
                 }]
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ds = chartInstance.data.datasets[0];
         const y  = emotionToY(emotion);
         ds.data.push({ x: timeStr, y });
-        ds.pointBackgroundColor.push(EMOTION_COLORS[emotion] || '#6366f1');
+        ds.pointBackgroundColor.push(EMOTION_COLORS[emotion] || '#f97316');
 
         // Keep last 40 points
         if (ds.data.length > 40) {
@@ -507,10 +507,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     label: 'Emotion Timeline',
                     data: slice.map((d, i) => ({ x: i, y: emotionToY(d.emotion) })),
-                    pointBackgroundColor: slice.map(d => EMOTION_COLORS[d.emotion] || '#6366f1'),
+                    pointBackgroundColor: slice.map(d => EMOTION_COLORS[d.emotion] || '#f97316'),
                     pointRadius: 4,
                     showLine: true,
-                    borderColor: 'rgba(99,102,241,0.25)',
+                    borderColor: 'rgba(249,115,22,0.25)',
                     borderWidth: 1.5,
                 }]
             },

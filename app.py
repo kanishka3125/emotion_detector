@@ -9,7 +9,7 @@ from flask import Flask, request, jsonify, render_template, Response
 from emotion_engine import EmotionAnalyzer
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', os.urandom(24))
 
 # In-memory session store: session_id -> EmotionAnalyzer instance
 # In a real production deployment with multiple workers, a shared state like Redis would be needed.
@@ -113,5 +113,6 @@ def download_report(session_id):
     )
 
 if __name__ == '__main__':
-    # Run locally
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Local development only — in production, gunicorn is used as the WSGI server.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
