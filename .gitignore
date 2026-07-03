@@ -1,14 +1,21 @@
-# Ignore the virtual environment
-.venv/
-venv/
-
-# Ignore python cache files
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
-# Ignore local session reports (keep the repo clean)
+# Virtual environments
+venv/
+env/
+ENV/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and Reports
 *.csv
 *.png
+*.log
 
-# (Optional) If you want to keep one specific screenshot, 
-# you can force add it later, but this blocks the messy ones.
+# Pytest
+.pytest_cache/

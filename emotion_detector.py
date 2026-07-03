@@ -57,7 +57,7 @@ while True:
 
         if calibration_frames % 2 == 0:
             try:
-                results = DeepFace.analyze(frame, actions=['emotion'], detector_backend=DETECTOR_BACKEND, enforce_detection=False, silent=True)
+                results = DeepFace.analyze(frame, actions=['emotion'], detector_backend=DETECTOR_BACKEND, enforce_detection=True, silent=True)
                 if isinstance(results, list): results = results[0]
                 
                 # Learn Baseline
@@ -90,7 +90,7 @@ while True:
 
     if calibration_frames % 2 == 0:
         try:
-            results = DeepFace.analyze(frame_enhanced, actions=['emotion'], detector_backend=DETECTOR_BACKEND, enforce_detection=False, silent=True)
+            results = DeepFace.analyze(frame_enhanced, actions=['emotion'], detector_backend=DETECTOR_BACKEND, enforce_detection=True, silent=True)
             if isinstance(results, list): results = results[0]
             
             raw_emotions = results['emotion']

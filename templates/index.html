@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmotionAI — Adaptive Facial Emotion Intelligence</title>
+    <meta name="description" content="Real-time facial emotion analysis using DeepFace with personal baseline calibration for accurate adaptive results.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- Header -->
+        <header>
+            <div class="header-brand">
+                <div class="logo">Emotion<span>AI</span></div>
+                <div class="header-subtitle">Adaptive Facial Emotion Intelligence</div>
+            </div>
+            <div class="header-indicators" id="header-indicators">
+                <div class="indicator" id="ind-camera">
+                    <span class="ind-dot"></span>
+                    <span class="ind-label">Camera</span>
+                </div>
+                <div class="indicator" id="ind-model">
+                    <span class="ind-dot"></span>
+                    <span class="ind-label">Model</span>
+                </div>
+                <div class="indicator" id="ind-calibrated">
+                    <span class="ind-dot"></span>
+                    <span class="ind-label">Calibrated</span>
+                </div>
+                <div class="indicator" id="ind-analyzing">
+                    <span class="ind-dot"></span>
+                    <span class="ind-label">Analyzing</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main>
+
+            <!-- Screen 1: Landing -->
+            <section id="screen-landing" class="screen active">
+
+                <!-- Hero -->
+                <div class="hero">
+                    <div class="hero-left">
+                        <div class="hero-eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            Powered by DeepFace &amp; Adaptive Baseline
+                        </div>
+                        <h1 class="hero-title">
+                            Read emotions<br>
+                            <span class="hero-title-accent">in real-time.</span>
+                        </h1>
+                        <p class="hero-desc">
+                            Personal baseline calibration means results are relative to <em>you</em> —
+                            not a one-size-fits-all average. Seven emotions, frame-by-frame, live from your camera.
+                        </p>
+                        <div class="hero-actions">
+                            <button id="btn-start" class="btn-primary btn-hero">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+                                Start Analysis
+                            </button>
+                            <span class="hero-privacy">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                No data leaves your device
+                            </span>
+                        </div>
+
+                        <!-- Emotion chips -->
+                        <div class="emotion-chips" aria-label="Detected emotions">
+                            <span class="chip chip-happy">😄 Happy</span>
+                            <span class="chip chip-sad">😢 Sad</span>
+                            <span class="chip chip-angry">😠 Angry</span>
+                            <span class="chip chip-surprise">😲 Surprise</span>
+                            <span class="chip chip-fear">😨 Fear</span>
+                            <span class="chip chip-disgust">🤢 Disgust</span>
+                            <span class="chip chip-neutral">😐 Neutral</span>
+                        </div>
+                    </div>
+
+                    <!-- Hero visual -->
+                    <div class="hero-right">
+                        <div class="hero-mockup">
+                            <div class="mockup-header">
+                                <span class="mockup-dot red"></span>
+                                <span class="mockup-dot yellow"></span>
+                                <span class="mockup-dot green"></span>
+                                <span class="mockup-title">EmotionAI · Live</span>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-cam-placeholder">
+                                    <div class="cam-icon">
+                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                                    </div>
+                                    <span>Camera preview</span>
+                                    <div class="mockup-rec"><div class="mockup-rec-dot"></div> REC</div>
+                                </div>
+                                <div class="mockup-result-row">
+                                    <div class="mockup-result-pill">
+                                        <span class="mockup-emotion-label">Adaptive Result</span>
+                                        <span class="mockup-emotion-value">Happy ✦</span>
+                                    </div>
+                                    <div class="mockup-conf">87.3%</div>
+                                </div>
+                                <div class="mockup-bars">
+                                    <div class="mb-row"><span>happy</span><div class="mb-bg"><div class="mb-fill" style="width:87%;background:#10b981"></div></div><span>87%</span></div>
+                                    <div class="mb-row"><span>neutral</span><div class="mb-bg"><div class="mb-fill" style="width:38%"></div></div><span>38%</span></div>
+                                    <div class="mb-row"><span>surprise</span><div class="mb-bg"><div class="mb-fill" style="width:22%;background:#6366f1"></div></div><span>22%</span></div>
+                                    <div class="mb-row"><span>sad</span><div class="mb-bg"><div class="mb-fill" style="width:8%"></div></div><span>8%</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature cards -->
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:#eef2ff;color:#6366f1">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Personal Baseline</h3>
+                        <p>5-second calibration learns your neutral face, so every result is relative to <em>you</em>.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:#f0fdf4;color:#10b981">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <h3>Adaptive Spike Logic</h3>
+                        <p>Detects relative changes above baseline — not just absolute probability scores.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:#fff7ed;color:#f59e0b">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h3>7 Emotions Tracked</h3>
+                        <p>Happy, sad, angry, fear, disgust, surprise, neutral — live probability bars for all.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background:#fdf2f8;color:#a855f7">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <h3>CSV Export</h3>
+                        <p>Every session is timestamped and exportable as a full emotion timeline report.</p>
+                    </div>
+                </div>
+
+                <!-- Trust bar -->
+                <div class="trust-bar">
+                    <span>🔒 Runs 100% locally</span>
+                    <span class="trust-divider">·</span>
+                    <span>📷 Camera used only during session</span>
+                    <span class="trust-divider">·</span>
+                    <span>🧠 No cloud API calls</span>
+                    <span class="trust-divider">·</span>
+                    <span>📊 DeepFace + OpenCV</span>
+                </div>
+
+            </section>
+
+            <!-- Screen 2: Active Dashboard -->
+            <section id="screen-dashboard" class="screen hidden">
+                <div class="dashboard-grid">
+
+                    <!-- Left: Camera + Result Panel -->
+                    <div class="camera-col">
+                        <div class="camera-card card">
+                            <div class="video-container">
+                                <video id="webcam" autoplay playsinline muted></video>
+                                <canvas id="canvas" style="display:none;"></canvas>
+
+                                <!-- Calibration Overlay -->
+                                <div id="calibration-overlay" class="overlay active">
+                                    <div class="calib-text-top">Look at Camera &mdash; Relax Face</div>
+                                    <div class="calib-box">
+                                        <div class="calib-progress-bar-bg">
+                                            <div class="calib-progress-bar-fill" id="calib-bar-fill"></div>
+                                        </div>
+                                        <div id="calibration-percent-text" class="calib-percent">Calibrating… 0%</div>
+                                    </div>
+                                </div>
+
+                                <!-- REC indicator -->
+                                <div id="rec-indicator" class="rec-indicator hidden">
+                                    <div class="rec-dot"></div>
+                                    <span>REC</span>
+                                </div>
+                            </div>
+
+                            <!-- Adaptive Result Panel (below video, inside camera card) -->
+                            <div id="result-panel" class="result-panel hidden">
+                                <div class="result-emotion-block">
+                                    <span class="result-label">Adaptive Result</span>
+                                    <span id="result-emotion-name" class="result-emotion-name">—</span>
+                                </div>
+                                <div class="result-meta-block">
+                                    <div class="result-meta-item">
+                                        <span class="meta-label">Raw Confidence</span>
+                                        <span id="result-raw-conf" class="meta-value">—</span>
+                                    </div>
+                                    <div class="result-meta-item" id="result-delta-wrap">
+                                        <span class="meta-label">vs. Baseline</span>
+                                        <span id="result-delta" class="meta-value">—</span>
+                                    </div>
+                                </div>
+                                <div class="result-explanation">
+                                    The adaptive result is calculated using your personal baseline, not just the highest raw probability.
+                                    <a href="#" id="explain-toggle" class="explain-link">Why might this differ?</a>
+                                    <div id="explain-detail" class="explain-detail hidden">
+                                        Your <strong>baseline</strong> is measured during calibration.
+                                        For each emotion: <code>spike = raw% − baseline%</code>.
+                                        Sad &amp; Angry receive a <strong>1.5× sensitivity boost</strong>.
+                                        The emotion with the highest spike wins — unless all spikes are below 10, in which case the result is <em>neutral</em>.
+                                        A <strong>3-frame majority vote</strong> stabilizes the final output.
+                                        This means the raw panel may show a higher probability for one emotion while the adaptive result shows another.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Session Metrics -->
+                        <div id="session-metrics" class="session-metrics card hidden">
+                            <div class="metric-item">
+                                <span class="metric-label">Duration</span>
+                                <span class="metric-value" id="metric-duration">0:00</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Frames</span>
+                                <span class="metric-value" id="metric-frames">0</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Dominant</span>
+                                <span class="metric-value" id="metric-dominant">—</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Current</span>
+                                <span class="metric-value" id="metric-current">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Raw Probabilities + Controls + Timeline -->
+                    <div class="stats-col">
+                        <div class="stats-card card">
+
+                            <!-- Controls -->
+                            <div class="controls-row">
+                                <button id="btn-recalibrate" class="btn-secondary btn-sm" disabled>Recalibrate</button>
+                                <button id="btn-end" class="btn-danger btn-sm" disabled>End Session</button>
+                            </div>
+
+                            <!-- Raw Probabilities -->
+                            <div class="probabilities-container">
+                                <h4 class="section-label">Raw Model Probabilities</h4>
+                                <p class="section-sublabel">Direct output from DeepFace — not baseline-adjusted.</p>
+                                <div id="bars-container">
+                                    <div class="placeholder-bars">
+                                        <div class="placeholder-text">Waiting for analysis…</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeline -->
+                            <div class="timeline-container">
+                                <h4 class="section-label">Emotion Timeline</h4>
+                                <p class="section-sublabel">Adaptive result over time</p>
+                                <div class="chart-wrapper">
+                                    <canvas id="timeline-chart"></canvas>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 3: Summary -->
+            <section id="screen-summary" class="screen hidden">
+                <div class="summary-content">
+                    <div class="summary-header">
+                        <h2>Session Complete</h2>
+                        <p class="summary-sub">Here is a breakdown of your session.</p>
+                    </div>
+
+                    <div class="summary-stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-label">Duration</span>
+                            <span class="stat-value" id="summary-duration">—</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Frames Analyzed</span>
+                            <span class="stat-value" id="summary-frames">0</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Dominant Emotion</span>
+                            <span class="stat-value" id="summary-dominant">—</span>
+                        </div>
+                    </div>
+
+                    <!-- Emotion Distribution -->
+                    <div class="card summary-dist-card">
+                        <h4 class="section-label">Emotion Distribution</h4>
+                        <div id="summary-dist-bars"></div>
+                    </div>
+
+                    <!-- Timeline Replay -->
+                    <div class="card summary-timeline-card">
+                        <h4 class="section-label">Session Timeline</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="summary-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="summary-actions">
+                        <a id="btn-download" href="#" class="btn-primary" download>Download CSV Report</a>
+                        <button id="btn-restart" class="btn-secondary">Start New Session</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
